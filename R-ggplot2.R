@@ -1,71 +1,71 @@
-library(ggplot2) #¼ÓÔØ³ÌĞò°ü
-data=read.csv(file=file.choose(),header=T)  #¼ÓÔØÎÄ¼ş
+library(ggplot2) #åŠ è½½ç¨‹åºåŒ…
+data=read.csv(file=file.choose(),header=T)  #åŠ è½½æ–‡ä»¶
 
-##»æÖÆ»ù±¾Í¼ĞÎ
+##ç»˜åˆ¶åŸºæœ¬å›¾å½¢
 p=ggplot(data,aes(x=,y=),colour=)
-p1=p+geom_point() #»æÖÆÉ¢µãÍ¼ defalt shape/shape=1 ¿ÕĞÄ/shape="." ÏñËØµã alpha:Í¸Ã÷¶È
-   ##Ö»ÓĞshape=21Ê±²Å¿ÉÒÔÊ¹ÓÃfillÌî³ä
+p1=p+geom_point() #ç»˜åˆ¶æ•£ç‚¹å›¾ defalt shape/shape=1 ç©ºå¿ƒ/shape="." åƒç´ ç‚¹ alpha:é€æ˜åº¦
+   ##åªæœ‰shape=21æ—¶æ‰å¯ä»¥ä½¿ç”¨fillå¡«å……
 p=ggplot(data,aes(x=,y=)colour=)
 p2=p+geom_bar(aes(fill=),width=0.8,position = "dodge")+
-labs(title="")  #»æÖÆ²¢ÁĞÖù×´Í¼ ##labs±íÍ· 
-theme(plot.title = element_text(hjust = 0.5)) ##±êÌâ¾ÓÖĞ
+labs(title="")  #ç»˜åˆ¶å¹¶åˆ—æŸ±çŠ¶å›¾ ##labsè¡¨å¤´ 
+theme(plot.title = element_text(hjust = 0.5)) ##æ ‡é¢˜å±…ä¸­
 p2=p+geom_bar(aes(fill=),stat = "identity",position="stack",width=0.8)+
-labs(title="") #»æÖÆ¶ÑµşÖù×´Í¼
+labs(title="") #ç»˜åˆ¶å †å æŸ±çŠ¶å›¾
 p2=p+geom_bar(aes(fill=),stat = "identity",position="fill",width=0.8)+
-labs(title="") #»æÖÆ°Ù·Ö±ÈÖù×´Í¼
-p2=p+geom_bar(aes(fill=item),stat = "identity",width=0.8)+facet_grid(#·Ö×éĞÅÏ¢~.)+
-labs(title="") #»æÖÆ·ÖÃæÖù×´Í¼
+labs(title="") #ç»˜åˆ¶ç™¾åˆ†æ¯”æŸ±çŠ¶å›¾
+p2=p+geom_bar(aes(fill=item),stat = "identity",width=0.8)+facet_grid(#åˆ†ç»„ä¿¡æ¯~.)+
+labs(title="") #ç»˜åˆ¶åˆ†é¢æŸ±çŠ¶å›¾
 p3=ggplot(data,aes(x=,y=,colour=))+geom_boxplot(aes(fill=),alpha=0.2,
 outlier.colour = "red",outlier.shape = 2,outlier.size = 5,coef=1.5)+
-geom_jitter(width = 0.1) #»æÖÆÏäÊ½Í¼
-stat_summary(fun.y=¡°mean¡±,geom=¡°point¡±,shape=23,size=3,fill=¡°white¡±) #ÏäÊ½Í¼¼ÓÆ½¾ù
-p2=p1+geom_line(aes(group=),size=?)  ##»æÖÆÕÛÏßÍ¼
+geom_jitter(width = 0.1) #ç»˜åˆ¶ç®±å¼å›¾
+stat_summary(fun.y=â€œmeanâ€,geom=â€œpointâ€,shape=23,size=3,fill=â€œwhiteâ€) #ç®±å¼å›¾åŠ å¹³å‡
+p2=p1+geom_line(aes(group=),size=?)  ##ç»˜åˆ¶æŠ˜çº¿å›¾
 
-##»æÖÆËãµãÍ¼¼ÓÕÛÏßÍ¼Ê±£¬ÒòÎª¶à¸öÓ³Éä¹ØÏµ£¬±ØĞë¶¨Òå·Ö×é
+##ç»˜åˆ¶ç®—ç‚¹å›¾åŠ æŠ˜çº¿å›¾æ—¶ï¼Œå› ä¸ºå¤šä¸ªæ˜ å°„å…³ç³»ï¼Œå¿…é¡»å®šä¹‰åˆ†ç»„
 ggplot(data,aes(x,y,group=group))
 
 
-##Îó²îÏß
-geom_errorbar(aes(ymax = response + se, ymin = response -  se) ##»æÖÆÎó²î°ô  ##×Ô¶¨Òåµ÷É«°å
-# Ê¹ÓÃgeom_errorbar()»æÖÆ´øÓĞÎó²î°ôµÄÌõĞÎÍ¼
-# ÕâÀïÒ»¶¨Òª×¢ÒâpositionÒªÓë`geom_bar()`±£³ÖÒ»ÖÂ£¬ÓÉÓÚÏµÍ³Ä¬ÈÏdodgeÊÇ0.9£¬
-# Òò´Ëgeom_errorbar()ÀïÃæpositionĞèÒªÉèÖÃ0.9£¬widthÉèÖÃÎó²î°ôµÄ´óĞ¡
+##è¯¯å·®çº¿
+geom_errorbar(aes(ymax = response + se, ymin = response -  se) ##ç»˜åˆ¶è¯¯å·®æ£’  ##è‡ªå®šä¹‰è°ƒè‰²æ¿
+# ä½¿ç”¨geom_errorbar()ç»˜åˆ¶å¸¦æœ‰è¯¯å·®æ£’çš„æ¡å½¢å›¾
+# è¿™é‡Œä¸€å®šè¦æ³¨æ„positionè¦ä¸`geom_bar()`ä¿æŒä¸€è‡´ï¼Œç”±äºç³»ç»Ÿé»˜è®¤dodgeæ˜¯0.9ï¼Œ
+# å› æ­¤geom_errorbar()é‡Œé¢positionéœ€è¦è®¾ç½®0.9ï¼Œwidthè®¾ç½®è¯¯å·®æ£’çš„å¤§å°
 ggplot(data = df, aes(x = treatment, y = response, fill = group)) + 
 geom_bar(stat = "identity", position = "dodge") + 
 geom_errorbar(aes(ymax = response + se, ymin = response -  se), 
 position = position_dodge(0.9), width = 0.15) + 
 scale_fill_brewer(palette = "Set1")
 
-##legendÍ¼ÀıµÄĞŞ¸Ä
-p+theme(legend.position='none')  #noneÎª²»¼Ólegend,"left"Îª×ó
-p+theme(legend.title=element_blank())  #É¾³ılegend.title
+##legendå›¾ä¾‹çš„ä¿®æ”¹
+p+theme(legend.position='none')  #noneä¸ºä¸åŠ legend,"left"ä¸ºå·¦
+p+theme(legend.title=element_blank())  #åˆ é™¤legend.title
 p+scale_colour_hue("what does it eat?")
-scale_fill_hue(guide = guide_legend(title=NULL))  #ĞŞ¸Älegend.titleÄÚÈİ
-theme(legend.background = element_blank()) #Í¼Àı±³¾°É«µÄÈ¥³ı
-scale_fill_discrete(limits=c("trt1", "trt2", "ctrl"))  ##Í¼ÀıË³ĞòµÄĞŞ¸Ä
-guides(fill=guide_legend(reverse=TRUE)) ##Äæ×ªÍ¼Àı
+scale_fill_hue(guide = guide_legend(title=NULL))  #ä¿®æ”¹legend.titleå†…å®¹
+theme(legend.background = element_blank()) #å›¾ä¾‹èƒŒæ™¯è‰²çš„å»é™¤
+scale_fill_discrete(limits=c("trt1", "trt2", "ctrl"))  ##å›¾ä¾‹é¡ºåºçš„ä¿®æ”¹
+guides(fill=guide_legend(reverse=TRUE)) ##é€†è½¬å›¾ä¾‹
 
 
 
-##themeÖ÷ÌâĞŞ¸Ä
-+theme_bw() #È¥³ı±³¾°É«
+##themeä¸»é¢˜ä¿®æ”¹
++theme_bw() #å»é™¤èƒŒæ™¯è‰²
 +theme(panel.grid.major=element_blank(),
-panel.grid.minor?=?element_blank()) #È¥³ıÍø¸ñÏß
-+theme(panel.border?=?element_blank())? #È¥³ı±ß¿òÏß
-+theme(panel.background?=?element_blank()) #ÒÆ³ı±³¾°É«ºÍ±ß¿ò
-+theme(axis.line?=?element_line(colour?=?"black")) #Ìí¼Ó×ø±êÖá
-+theme(strip.background = element_rect(fill = "black")) #facet±³¾°ºÚÉ«
-+theme(strip.text = element_text(color = "white",face="bold")) #facet×ÖÌå°×É«
+panel.grid.minor?=?element_blank()) #å»é™¤ç½‘æ ¼çº¿
++theme(panel.border?=?element_blank())? #å»é™¤è¾¹æ¡†çº¿
++theme(panel.background?=?element_blank()) #ç§»é™¤èƒŒæ™¯è‰²å’Œè¾¹æ¡†
++theme(axis.line?=?element_line(colour?=?"black")) #æ·»åŠ åæ ‡è½´
++theme(strip.background = element_rect(fill = "black")) #facetèƒŒæ™¯é»‘è‰²
++theme(strip.text = element_text(color = "white",face="bold")) #facetå­—ä½“ç™½è‰²
 
 
-##×ø±êÖá¼°±êÌâ×ÖÌåµ÷Õû
-p+labs(x="ÈË¿Ú",y="Ê§ÒµÂÊ",title="¾­¼Ãµ÷²é±¨¸æ") #ĞŞ¸ÄxyÒÔ¼°×Ü±êÌâ
+##åæ ‡è½´åŠæ ‡é¢˜å­—ä½“è°ƒæ•´
+p+labs(x="äººå£",y="å¤±ä¸šç‡",title="ç»æµè°ƒæŸ¥æŠ¥å‘Š") #ä¿®æ”¹xyä»¥åŠæ€»æ ‡é¢˜
 theme(title=element_text(family="myFont",size=12,color="red",
-face="italic",hjust=0.2,lineheight=0.2), #ĞŞ¸Ä×ÖÌå
+face="italic",hjust=0.2,lineheight=0.2), #ä¿®æ”¹å­—ä½“
 axis.title.x=element_text(size=10,face="bold",color="blue",hjust=0.5),
 axis.title.y=element_text(size=14,color="green",hjust=0.5,angle=45),
-axis.text.x=element_text(family="myFont",size=8,color="red") )  ##ĞŞ¸Äxy±êÌâ
-ÒÔ¼°×ø±êÖá×ÖÌå
+axis.text.x=element_text(family="myFont",size=8,color="red") )  ##ä¿®æ”¹xyæ ‡é¢˜
+ä»¥åŠåæ ‡è½´å­—ä½“
 windowsFonts(HEL=windowsFont("Helvetica CE 55 Roman"),
              RMN=windowsFont("Times New Roman"),
              ARL=windowsFont("Arial"))
@@ -82,47 +82,47 @@ old_theme <- theme_update(
   axis.line=theme_segment(size=1)
 )
 
-##×ø±êÖá¼ä¸ôµ÷Õû
+##åæ ‡è½´é—´éš”è°ƒæ•´
 scale_x_continuous(limits=c(1950,2000),breaks=seq(1950,2000,5))
 
-##ĞŞ¸Ä×ø±êÖáË³Ğò
-data$column = factor(data$column, levels=c('D','B','C','A','E')) #ĞŞ¸Ä×ø±êÖáË³Ğò
+##ä¿®æ”¹åæ ‡è½´é¡ºåº
+data$column = factor(data$column, levels=c('D','B','C','A','E')) #ä¿®æ”¹åæ ‡è½´é¡ºåº
 
-##É¢µãÍ¼ÉÏÎÄ×ÖµÄÌí¼Ó
+##æ•£ç‚¹å›¾ä¸Šæ–‡å­—çš„æ·»åŠ 
 geom_text(label=paste(data$date),colour="black",size=4,vjust=-0.8)
 
-##¼ÓË®Æ½Ïß»òÕß´¹Ö±Ïß
+##åŠ æ°´å¹³çº¿æˆ–è€…å‚ç›´çº¿
 P+geom_hline(yintercept=0,linetype="dotted")
 
-##Ò»Ò³¶àÍ¼
+##ä¸€é¡µå¤šå›¾
 library(easyGgplot2)
 ggplot2.multiplot(plot1,plot2,plot3,plot4, cols=2)
 
-##Í¼Æ¬·ÖÒ³
-+facet_grid(.~variable,scales = "free") ##Ë®Æ½·½Ïò·Ö¸î
-facet_wrap() #Í¼Æ¬¸ü¼ÓÃÀ¹Û
+##å›¾ç‰‡åˆ†é¡µ
++facet_grid(.~variable,scales = "free") ##æ°´å¹³æ–¹å‘åˆ†å‰²
+facet_wrap() #å›¾ç‰‡æ›´åŠ ç¾è§‚
 
-## X/Y Öáµßµ¹
+## X/Y è½´é¢ å€’
 +coord_flip()
 
-##×ø±êÖáÀàĞÍµÄ×ª»»
-#×Ö·ûĞÍ×ªÊı×ÖĞÍ
+##åæ ‡è½´ç±»å‹çš„è½¬æ¢
+#å­—ç¬¦å‹è½¬æ•°å­—å‹
 as.numeric()
-#Êı×ÖĞÍ×ª×Ö·ûĞÍ
+#æ•°å­—å‹è½¬å­—ç¬¦å‹
 as.character()
 
-##×ø±êÖáË³Ğò
+##åæ ‡è½´é¡ºåº
 data$sample=factor(data$sample,levels=c("d7-0","d14-0","d21-0",
 "d28-0","d7-0.001","d14-0.001","d21-0.001","d28-0.001","d7-0.01",
 "d14-0.01","d21-0.01","d28-0.01","d7-0.1","d14-0.1","d21-0.1","d28-0.1","d7-1","d14-1",
 "d21-1","d28-1","d7-10","d14-10","d21-10","d28-10"))
 
-##×Ô¶¨Òåµ÷É«°å
+##è‡ªå®šä¹‰è°ƒè‰²æ¿
 p2=p1+scale_colour_manual(values=tiaose)
 tiaose=c("springgreen","orange","blue","yellow","purple","red")
 tiaose=c("slateblue","tomato","green")
 
-##¶ÀÁ¢Ìí¼ÓÍ¼Àı
+##ç‹¬ç«‹æ·»åŠ å›¾ä¾‹
 ggplot(data = datos, aes(x = fecha)) +
   geom_line(aes(y = TempMax, colour = "TempMax")) +
   geom_line(aes(y = TempMedia, colour = "TempMedia")) +
@@ -132,50 +132,50 @@ ggplot(data = datos, aes(x = fecha)) +
                       values = c("red", "green", "blue"))
 
 
-##×Ô¶¨ÒåÑÕÉ«
+##è‡ªå®šä¹‰é¢œè‰²
 p2=p1+scale_colour_brewer(palette = "Pastel1")
 #library(RColorBrewer)
-#display.brewer.all()²é¿´ËùÓĞÑÕÉ«Ö÷Ìâ
+#display.brewer.all()æŸ¥çœ‹æ‰€æœ‰é¢œè‰²ä¸»é¢˜
 tiaose=c("lightsalmon","lightskyblue","lightpink","lightgreen",
 "lightgoldenrod","slateblue1","lightcoral","lightblue","orchid1","palegreen",
 "steelblue1","rosybrown1","orchid3","cyan")
-##ÎÄ±¾µÄÌí¼Ó
+##æ–‡æœ¬çš„æ·»åŠ 
 p + annotate("text", x=3, y=48, label="Group 1")
 
-##ÏßĞÔÄâºÏ
+##çº¿æ€§æ‹Ÿåˆ
 p+geom_smooth(method = "lm")
-##Ïà¹ØĞÔ·ÖÎö
+##ç›¸å…³æ€§åˆ†æ
 library(ggpubr)
 ggplot(data=dat, aes(x=gene, y=gene2))+
   geom_point(color="red")+stat_smooth(method="lm",se=FALSE)++
   stat_cor(data=dat, method = "pearson")
-#stat_cor(data=dat, method = "pearson")ÒâÎªÓÃpearsonÏà¹Ø½øĞĞÏà¹ØĞÔ·ÖÎö£¬¿ÉÒÔ×ÔĞĞ¸ü¸Ä·½·¨
+#stat_cor(data=dat, method = "pearson")æ„ä¸ºç”¨pearsonç›¸å…³è¿›è¡Œç›¸å…³æ€§åˆ†æï¼Œå¯ä»¥è‡ªè¡Œæ›´æ”¹æ–¹æ³•
 
-##PCAÈ¦Í¼²¢ÇÒÌí¼ÓÖÃĞÅÏŞ
+##PCAåœˆå›¾å¹¶ä¸”æ·»åŠ ç½®ä¿¡é™
 p+stat_ellipse(level = 0.9, geom = "polygon")
 ##https://www.cnblogs.com/xudongliang/p/8203835.html
-##PCA»æÖÆ¶à±ßĞÎ
+##PCAç»˜åˆ¶å¤šè¾¹å½¢
 library(plyr)
 group_border <- ddply(data, 'group', function(df) df[chull(df[[3]], df[[4]]), ])
 p+geom_polygon(data = group_border, alpha = 0.3, show.legend = F) 
-##dataÔ­Ê¼Êı¾İ,groupÎª·Ö×é,3ºÍ4Îª×ø±êÖá,
+##dataåŸå§‹æ•°æ®,groupä¸ºåˆ†ç»„,3å’Œ4ä¸ºåæ ‡è½´,
 ##http://blog.sciencenet.cn/blog-3406804-1155528.html
 
 
 
 
-##meltº¯Êı
+##meltå‡½æ•°
 melt(data, id.vars, measure.vars, 
      variable.name = "variable", ..., na.rm = FALSE,
      value.name = "value", factorsAsStrings = TRUE)
 
 
-##ggplot2ÈÈÍ¼
+##ggplot2çƒ­å›¾
 data=melt(data)
 p=ggplot(data,aes(x,y))+geom_tile(fill=aes(value))
 +scale_fill_gradient(low = "green", high = "red")
 
-##ggfority»­PCAÈ¦Í¼##-----------------------
+##ggforityç”»PCAåœˆå›¾##-----------------------
 autoplot(prcomp(df),data=iris,colour="Species",frame=T,frame.type="norm")
 
 
